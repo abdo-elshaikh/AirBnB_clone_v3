@@ -51,6 +51,7 @@ def create_state():
     except Exception:
         abort(400, "Not a JSON")
 
+
 @app_views.route('/states/<state_id>', methods=['PUT'])
 def update_state(state_id):
     """Update a State object."""

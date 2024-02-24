@@ -54,15 +54,13 @@ class BaseModel:
         storage.new(self)
         storage.save()
 
-    def to_dict(self, passwd=None):
+    def to_dict(self):
         """Convert instance into dict format"""
-        dict = {}
-        dict.update(self.__dict__)
-        dict.update({'__class__':
-                     (str(type(self)).split('.')[-1]).split('\'')[0]})
-        if '_sa_instance_state' in dict:
-            del dict['_sa_instance_state']
-        if passwd:
-            dict['password'] = passwd
-        return dict
-    
+        dictionary = {}
+        dictionary.update(self.__dict__)
+        dictionary.update({'__class__':
+                          (str(type(self)).split('.')[-1]).split('\'')[0]})
+        dictionary['created_at'] = self.created_at.isoformat()
+        dictionary['updated_at'] = self.updated_at.isoformat()
+        dictionary.pop("_sa_instance_state", None)
+        return dictionary

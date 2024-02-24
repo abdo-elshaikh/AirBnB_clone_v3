@@ -19,17 +19,20 @@ app.register_blueprint(app_views)
 # Enable strict_slashes=False
 app.url_map.strict_slashes = False
 
+
 # Define a method to handle teardown_appcontext
 @app.teardown_appcontext
 def close_storage(exception):
     """Close the current SQLAlchemy session."""
     storage.close()
 
+
 #  create a handler for 404 errors
 @app.errorhandler(404)
 def nop(error):
     """Handle 404 errors."""
     return jsonify({"error": "Not found"}), 404
+
 
 # Run the Flask application
 if __name__ == "__main__":

@@ -8,6 +8,7 @@ from models.city import City
 from models.place import Place
 from models.user import User
 
+
 @app_views.route('/cities/<city_id>/places', methods=['GET'])
 def get_places(city_id):
     """Retrieve all Place objects."""
@@ -75,6 +76,7 @@ def update_place(place_id):
             setattr(place, key, value)
     storage.save()
     return jsonify(place.to_dict()), 200
+
 
 @app_views.route('/places_search', methods=['POST'])
 def places_search():

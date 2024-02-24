@@ -2,7 +2,6 @@
 """Module containing the views for the API."""
 from flask import Blueprint
 
-app_views = Blueprint("app_views", __name__, url_prefix="/api/v1")
 
 from .index import *
 from .states import *
@@ -12,3 +11,5 @@ from .places import *
 from .amenities import *
 from .places_reviews import *
 from .places_amenities import *
+
+app_views = Blueprint("app_views", __name__, url_prefix="/api/v1")

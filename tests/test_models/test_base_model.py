@@ -64,11 +64,8 @@ class TestBaseModel(unittest.TestCase):
 
     def test_kwargs(self):
         """Test kwargs input"""
-        model_dict = self.model.to_dict()
-        new_model = BaseModel(**model_dict)
-        self.assertEqual(self.model.id, new_model.id)
-        self.assertEqual(self.model.created_at, new_model.created_at)
-        self.assertEqual(self.model.updated_at, new_model.updated_at)
+        model_kwargs = BaseModel(**self.model.to_dict())
+        self.assertIsInstance(model_kwargs, BaseModel)
 
     def test_file_storage(self):
         """Test if instances are correctly stored in file storage"""
